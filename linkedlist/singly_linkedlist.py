@@ -23,7 +23,9 @@ class Linkedlist:
             while current.next:
                 current=current.next
             current.next=new_node
-            
+    
+    # coutns nodes
+    
     def countNode(self):
         num=0
         current=self.head
@@ -31,6 +33,11 @@ class Linkedlist:
             num+=1
             current=current.next
         return num
+    #  inserting node at strat
+    def insert_node_strat(self,data):
+        new_node=Node(data)
+        new_node.next=self.head
+        self.head=new_node
     
     def print_node(self):
         current=self.head
@@ -55,4 +62,12 @@ if __name__== "__main__":
     print( f"total numbers of nodes {count}")
     
     print("the value of nodes")
+    Linkedlist.print_node()
+    
+    
+    Linkedlist.insert_node_strat(10)
+    Linkedlist.insert_node_strat(11)
+    Linkedlist.insert_node_strat(12)
+    Linkedlist.insert_node_strat(13)
+    print("vale of node after inserting at the strat")
     Linkedlist.print_node()
