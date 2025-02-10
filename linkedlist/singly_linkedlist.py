@@ -38,6 +38,36 @@ class Linkedlist:
         new_node=Node(data)
         new_node.next=self.head
         self.head=new_node
+        
+    # location of last nodes
+    
+    def find_last_node(self):
+        if self.head is None:
+            return None
+        current=self.head
+        while current.next:
+            current=current.next
+        return current
+    
+
+    def delete_node(self,key):
+        current =self.head
+        if current is not None and current.data == key:
+            self.head=current.next
+            return
+        prev=None
+        while current is not None:
+            if current.data==key:
+                break
+            prev=current
+            current=current.next
+            
+            if current is None:
+                print(f"node with value{key}")
+                return
+            
+            prev.next=current.next
+            
     
     def print_node(self):
         current=self.head
@@ -70,4 +100,18 @@ if __name__== "__main__":
     Linkedlist.insert_node_strat(12)
     Linkedlist.insert_node_strat(13)
     print("vale of node after inserting at the strat")
+    Linkedlist.print_node()
+    
+    print("last node of linkedlist")
+    # Linkedlist.find_last_node()
+    last_node=Linkedlist.find_last_node()
+    if last_node:
+        print(f"value of last node  {last_node.data}")
+    else:
+        print("empty")
+        
+    
+    key = 10
+    print(f"\nDeleting node with value {key}:")
+    Linkedlist.delete_node(key)
     Linkedlist.print_node()
