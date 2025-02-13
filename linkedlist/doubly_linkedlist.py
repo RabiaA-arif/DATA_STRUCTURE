@@ -46,14 +46,89 @@ class doubly_linkedlist:
                 current.prev=new_node
             else:
                 self.head=new_node
-            current.prev=new_node
+                current.prev=new_node
             return
         
-            current=current.next
+        current=current.next
         print(f"node with value {given_node_data} not found")
 
         
     
+
+        
+    # def delete_node(self,key):
+    #     if self.head is None:
+    #         print("no node hee to be delete")
+    #         return
+    #     temp=self.head
+    #     while temp is not None:
+    #         if temp.data==key:
+    #             break
+    #         temp=temp.next
+        
+    #     if temp is None:
+    #         print(f"node with value {key} is not found")
+    #         return
+    #     if temp ==self.head:
+    #         self.head=temp.next
+    #         if self.head is not None:
+    #             self.head.prev=None
+    #     else:
+    #         if temp.next is not None:
+    #              if temp.next.prev is not None:
+    #                  temp.next.prev=temp.next
+                   
+    #     temp=None
+    #     print(f"none with value {key} is deleted")
+        
+     # Function to delete a node by value
+     
+    def reverse_node(self):
+        temp=None
+        current=self.head
+        
+        while current is not None:
+            temp=current.prev
+            current.prev=current.next
+            current.next=temp
+            current=current.prev
+        if temp is not None:
+            self.head=temp.prev
+            
+    def delete_node(self, key):
+        # If the list is empty
+        if self.head is None:
+            print("The list is empty. Nothing to delete.")
+            return
+
+        # Find the node to delete
+        temp = self.head
+        while temp is not None:
+            if temp.data == key:
+                break
+            temp = temp.next
+
+        # If the node was not found
+        if temp is None:
+            print(f"Node with value {key} not found.")
+            return
+
+        # If the node to delete is the head node
+        if temp == self.head:
+            self.head = temp.next
+            if self.head is not None:
+                self.head.prev = None
+        else:
+            # If the node to delete is not the head node
+            if temp.next is not None:
+                temp.next.prev = temp.prev
+            if temp.prev is not None:
+                temp.prev.next = temp.next
+
+        # Free the memory of the deleted node (optional in Python due to garbage collection)
+        temp = None
+        print(f"Node with value {key} deleted.")
+            
     def print(self):
             temp = self.head
             if temp is None:
@@ -63,7 +138,6 @@ class doubly_linkedlist:
                 print(temp.data, end=" <-> ")
                 temp = temp.next
             print("None")
-
     
 if __name__ == "__main__":
     doubly_linkedlist=doubly_linkedlist()
@@ -86,8 +160,19 @@ if __name__ == "__main__":
     doubly_linkedlist.insert_at_end(5)
     doubly_linkedlist.print()
     
-    print("adding the node before given node data")
-    doubly_linkedlist.insert_before_node(4,44)
+    # print("adding the node before given node data")
+    # doubly_linkedlist.insert_before_node(1,44)
+    # doubly_linkedlist.insert_before_node(3,45)
+    # doubly_linkedlist.insert_before_node(4,24)
+    # doubly_linkedlist.print()
+    print("revers the linkedlist")
+    doubly_linkedlist.reverse_node()
     doubly_linkedlist.print()
-
+    
+    print("deleting the node")
+    doubly_linkedlist.delete_node(1)
+    doubly_linkedlist.print()
+    
+    doubly_linkedlist.delete_node(5)
+    doubly_linkedlist.print()
 
